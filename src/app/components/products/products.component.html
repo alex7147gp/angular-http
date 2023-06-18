@@ -1,6 +1,31 @@
-<p>cuantity of products in the shoppong cart {{ myShoppingCart.length }}</p>
-<p>price total of products is {{ total }}</p>
-<p>today: {{ today | timeAgo }}</p>
+<button (click)="createNewProduct()">click</button>
+<button (click)="onShowDetail">detail not found</button>
 <div class="products--grid">
-	<app-product [product]="product" *ngFor="let product of products" (addedProduct)="onAddToShoppingCart($event)"></app-product>
+	<app-product 
+	  [product]="product" 
+	  *ngFor="let product of products" 
+	  (addedProduct)="onAddToShoppingCart($event)" 
+	  (showProduct)="onShowDetail($event)">  
+	</app-product>
+	<div>
+		<button (click)="loadMore(1)">1</button>
+		<button (click)="loadMore(2)">2</button>
+		<button (click)="loadMore(3)">3</button>
+		<button (click)="loadMore(4)">4</button>
+	</div>
+</div>
+<div class="product-detail" [class.active]="showProductDetail">
+	{{ statusDetail }}
+	<div *ngIf="productChosen">
+	  <button (click)="toggleProductDetail()">close</button>
+	  <h1>{{ productChosen.title}}</h1>
+	  <swiper [slidesPerView]="1">
+	  	<ng-template swiperSlide *ngFor="let img of productChosen.images">
+	  		<img [src]="img" alt="productChosen.title">
+	  	</ng-template>
+	  </swiper>
+	  <p>{{ productChosen.description}}</p>
+	  <button (click)="updateProduct()">editar</button>
+	  <button (click)="deleteProduct()">delete</button>
+	</div>  
 </div>

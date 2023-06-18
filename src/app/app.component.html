@@ -1,4 +1,16 @@
 <app-nav></app-nav>
+<button (click)="createUser()">createUser</button>
+<button (click)="login()">login</button>
+<p>
+  <a href="./assets/files/texto.txt">dowload</a>
+</p>
+<p>
+  <button (click)="downloadPdf()">download pdf</button>
+</p>
+<p>
+  <input type="file" (change)="onUpload($event)">
+  <img  *ngIf="imgRta" [src]="imgRta" alt="imgUpload">
+</p>
 <app-products></app-products>
 
 
